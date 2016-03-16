@@ -30,6 +30,7 @@ Basespeed = 300 / room_speed;
 Facing = 0;
 Hsp = 0;
 Vsp = 0;
+Carry = 0;
 </string>
           </argument>
         </arguments>
@@ -53,35 +54,32 @@ Vsp = 0;
           <argument>
             <kind>1</kind>
             <string>///Movement
+
+//Get Input
 Left = keyboard_check (ord ("A"));
 Right = keyboard_check (ord ("D"));
 Up = keyboard_check (ord ("W"));
 Down = keyboard_check (ord ("S"));
 speed = 0;
 
-if Left {
-    x -= Basespeed;
-}
-if Right {
-    x += Basespeed;
-}
-if Up {
-    y -= Basespeed;
-}
-if Down {
-    y += Basespeed;
-}
-
 //Mouse Aim
 Facing = point_direction (x,y,mouse_x, mouse_y);
 image_angle = Facing;
 
-//Collision
-if place_meeting (x + Basespeed, y, oSolidPar) {
-    while !place_meeting (x + sign (Hsp), y, oSolidPar) {
-        x += sign (Hsp);
-    }
+//Move
+if Left {
+    hspeed -= Basespeed;
 }
+if Right {
+    hspeed += Basespeed;
+}
+if Up {
+    vspeed -= Basespeed;
+}
+if Down {
+    vspeed += Basespeed;
+}
+
 
 </string>
           </argument>
