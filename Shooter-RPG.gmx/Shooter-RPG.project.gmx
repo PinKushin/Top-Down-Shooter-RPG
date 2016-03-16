@@ -11,6 +11,11 @@
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\DebugLog.gml</script>
+    <script>scripts\DebugLogInitialise.gml</script>
+    <script>scripts\DebugLogDraw.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\oSolidPar</object>
     <object>objects\oWall</object>
