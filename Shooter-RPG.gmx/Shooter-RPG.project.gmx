@@ -8,18 +8,38 @@
   <sprites name="sprites">
     <sprite>sprites\sWall</sprite>
     <sprite>sprites\sPlayer</sprite>
+    <sprite>sprites\sSpider</sprite>
+    <sprite>sprites\sDamage</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\DebugLog.gml</script>
-    <script>scripts\DebugLogInitialise.gml</script>
-    <script>scripts\DebugLogDraw.gml</script>
+    <scripts name="Debugger">
+      <script>scripts\DebugLog.gml</script>
+      <script>scripts\DebugLogInitialise.gml</script>
+      <script>scripts\DebugLogDraw.gml</script>
+    </scripts>
+    <scripts name="Enemy States">
+      <scripts name="Enemy Helpers">
+        <script>scripts\EnemyChooseNextState.gml</script>
+        <script>scripts\CheckForPlayer.gml</script>
+      </scripts>
+      <script>scripts\EnemyChaseState.gml</script>
+      <script>scripts\EnemyStallState.gml</script>
+      <script>scripts\EnemyWanderState.gml</script>
+      <script>scripts\EnemyIdleState.gml</script>
+    </scripts>
+    <scripts name="Helpers">
+      <script>scripts\Chance.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\oSolidPar</object>
     <object>objects\oWall</object>
     <object>objects\oPlayer</object>
+    <object>objects\oEnemyPar</object>
+    <object>objects\oSpider</object>
+    <object>objects\oDamage</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rTest</room>
