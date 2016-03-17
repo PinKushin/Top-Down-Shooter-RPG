@@ -8,62 +8,6 @@
   <parentName>oEnemyPar</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Initialise the Spider
-event_inherited ();
-image_speed = 0.1;
-Basespeed = 75 / room_speed;
-State = EnemyIdleState;
-alarm[WANDER] = room_speed * irandom_range (2, 5);
-Sight = 64;
-TargetX = 0;
-TargetY = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Run Current State to Move
-event_inherited ();
-script_execute (State);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="4" ename="oPlayer">
       <action>
         <libid>1</libid>
@@ -82,16 +26,8 @@ script_execute (State);
           <argument>
             <kind>1</kind>
             <string>///Damage the Player
-if State != EnemyStallState
-{
-    var Dir = point_direction (other.x, other.y, x, y);
-    var XDir = lengthdir_x (1, Dir);
-    var YDir = lengthdir_y (1, Dir);
-    var Damage = instance_create (other.x + XDir, other.y + YDir, oDamage);
-    Damage.Creator = id;
-    Damage.Knockback = 5;
-    State = EnemyStallState;
-    alarm[STALL] = room_speed;
+with oPlayer {
+    instance_destroy ();
 }
 </string>
           </argument>
@@ -112,6 +48,6 @@ if State != EnemyStallState
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
     <point>32,32</point>
-    <point>20,32</point>
+    <point>24,32</point>
   </PhysicsShapePoints>
 </object>

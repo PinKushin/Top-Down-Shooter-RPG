@@ -28,6 +28,7 @@
             <string>///Initialize Enemys
 phy_fixed_rotation = true;
 HP = 3;
+Maxspeed = 150 / room_speed
 </string>
           </argument>
         </arguments>
@@ -53,6 +54,19 @@ HP = 3;
             <string>///Destroy if HP &lt;= 0
 if HP &lt;= 0 {
     instance_destroy ();
+}
+if !place_meeting (x, y, oSolidPar) &amp;&amp; phy_speed &lt; Maxspeed {
+    physics_apply_local_impulse (x, y, 10, 0);
+}
+
+//If we're about to walk into a wall, change direction until we're not
+
+CollisionChecks = 0
+DirectionToCheck = choose (-1, 1)
+while place_meeting (x + phy_speed_x, y + phy_speed_y, oSolidPar) &amp;&amp; CollisionChecks &lt;= 12 {
+        phy_rotation += -180;
+        physics_apply_local_impulse (x, y, 10, 0);
+        CollisionChecks = CollisionChecks + 1;
 }
 </string>
           </argument>
@@ -82,7 +96,7 @@ if HP &lt;= 0 {
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="oWall">
+    <event eventtype="4" ename="oSolidPar">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -100,6 +114,21 @@ if HP &lt;= 0 {
           <argument>
             <kind>1</kind>
             <string>///Collide
+/*if place_meeting (x, y, oSolidPar) {
+    physics_apply_local_force (x, y, x, y);
+    //phy_rotation = random_range (-30, 60);
+    direction = random_range (-30, 60);
+}
+*/
+//If we're about to walk into a wall, change direction until we're not
+
+CollisionChecks = 0
+DirectionToCheck = choose (-1, 1)
+while place_meeting (x + phy_speed_x, y + phy_speed_y, oSolidPar) &amp;&amp; CollisionChecks &lt;= 12 {
+        phy_rotation += -180;
+        physics_apply_local_impulse (x, y, 10, 0);
+        CollisionChecks = CollisionChecks + 1;
+}
 </string>
           </argument>
         </arguments>
@@ -114,7 +143,7 @@ if HP &lt;= 0 {
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
   <PhysicsObjectLinearDamping>0.100000001490116</PhysicsObjectLinearDamping>
   <PhysicsObjectAngularDamping>0.100000001490116</PhysicsObjectAngularDamping>
-  <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
+  <PhysicsObjectFriction>0.100000001490116</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints/>
